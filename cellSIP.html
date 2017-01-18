@@ -1,0 +1,42 @@
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>sip.uno : communication done simple</title>
+  <script type="text/javascript" src="CellSIP.js"></script>
+
+  <!-- Bootstrap: Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Bootstrap: Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+</head>
+
+<body>
+</body>
+
+<script type="text/javascript">
+var storedState = localStorage.getItem('cell_sip_store.1.2');
+var startingState = storedState ? JSON.parse(storedState) : null;
+var elmApp = Elm.CellSIP.fullscreen(startingState);
+elmApp.ports.setStorage.subscribe(function(state) {
+    localStorage.setItem('cell_sip_store.1.2', JSON.stringify(state));
+});
+elmApp.ports.pickContact.subscribe(function(_par) {
+  //alert("Hello! I am pickContact!");
+  //elmApp.ports.contactPicker.send({contactNum:"106", contactName:"Boris"});
+  androidApp.pickContact();
+  console.log("I am pickContact!");
+  //console.log(elmApp.ports);
+  //elmApp.ports.contactPicker.send(["14162947084"])
+});
+</script>
+
+</html>
